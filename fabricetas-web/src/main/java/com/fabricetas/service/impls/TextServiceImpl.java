@@ -1,17 +1,17 @@
 package com.fabricetas.service.impls;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.fabricetas.domain.Text;
 import com.fabricetas.domain.dto.TextDto;
 import com.fabricetas.repos.TextRepository;
 import com.fabricetas.service.TextService;
 import com.fabricetas.util.FetchService;
 import com.google.common.collect.Lists;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 /**
  * Class used as a service for text on the controller

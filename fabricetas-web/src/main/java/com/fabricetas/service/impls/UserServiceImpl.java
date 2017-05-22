@@ -1,18 +1,18 @@
 package com.fabricetas.service.impls;
 
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.fabricetas.domain.User;
 import com.fabricetas.domain.dto.UserDto;
 import com.fabricetas.repos.UserRepository;
 import com.fabricetas.service.UserService;
 import com.fabricetas.util.FetchService;
 import com.google.common.collect.Lists;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Collection;
-import java.util.List;
 
 /**
  * Class used as a service for user on the controller
