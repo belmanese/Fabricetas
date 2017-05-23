@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Configuración del perfil</h3>
+    </div>
+  </div>
+
+  <!-- div para cambio de contraseñas --><!-- div para cambio de contraseñas -->
+  <!-- div para cambio de contraseñas --><!-- div para cambio de contraseñas -->
+  <div class="row">
+    <!-- cambio de contraseñas --><!-- cambio de contraseñas --><!-- cambio de contraseñas -->
+    <!-- cambio de contraseñas --><!-- cambio de contraseñas --><!-- cambio de contraseñas -->
+    <div class="col-md-12">
+      <div class="col-md-6" ng-show="changePassword">
+        <h3>Configuración de contraseña</h3>
+        <br>
+        <p>Ingrese la nueva contraseña.</p>
+        <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-lock" aria-hidden="true"></i></span>
+          <input required ng-model="usuarioCompleto.password" type="password" class="form-control" placeholder="Nueva Contraseña" aria-describedby="sizing-addon1">
+          <br>
+        </div>
+        <label ng-show="guardadoUsuario">Actualizacion correcta</label>
+        <div class="col-md-12">
+          <br>
+          <button type="button" class="btn btn-success btn-block" ng-click="actualizarDatosUsuario()" name="button">Actualizar contraseña</button>
+        </div>
+      </div>
+      <div class="col-md-6" ng-show="changeAdress">
+        <h3>Configuración de direcciones</h3>
+        <br>
+        <p>Agrege, actualice o elimine las direcciones</p>
+        <div class="input-group" ng-repeat="direccion in usuarioCompleto.address">
+          <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-globe" aria-hidden="true"></i></span>
+          <input required ng-model="direccion.name" value="direccion.name" type="text" class="form-control" placeholder="Usuario" aria-describedby="sizing-addon1">
+          <!-- <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-times-circle" aria-hidden="true" ng-click="eliminarDireccion(direccion.indice)"></i></span> -->
+          <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-check-circle-o" aria-hidden="true" ng-click="actualizarDireccion(direccion)"></i></span>
+          <br>
+        </div>
+        <label ng-show="guardado">Guardado correcto</label>
+        <div class="col-md-12">
+          <br>
+            <button type="button" class="btn btn-success btn-block" ng-click="agregarDireccion()" name="button">Agregar dirección</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

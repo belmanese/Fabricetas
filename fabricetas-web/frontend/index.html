@@ -97,6 +97,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 		<script src="js/directives/cargarImagenes.js" charset="utf-8"></script>
 
+		<!-- modulo de perfil de usuario -->
+		<script src="js/perfil/perfilCtrl.js" charset="utf-8"></script>
+		<script src="js/perfil/servicioPerfil.js" charset="utf-8"></script>
+
 		<!-- módulo de generarCamisa camisaAleatoria -->
 		<script src="js/camisaAleatoria/camisaAleatoriaCtrl.js" charset="utf-8"></script>
 		<link rel="stylesheet" href="js/camisaAleatoria/estilosComponente.css">
@@ -181,6 +185,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li><a href="404.html"><i class="fa fa-commenting-o" aria-hidden="true"></i> Contactenos</a></li> -->
 					<li><a href="#!/login"><i class="fa fa-sign-in" aria-hidden="true"></i> Ingresar</a></li>
 					<li ng-if="tipoUsuario=='3'"><a href="#!/artista"  style="color:blue;"><i class="fa fa-bookmark" aria-hidden="true"></i> Mis estampas</a></li>
+					<li ng-if="tipoUsuario=='3' || tipoUsuario=='2'"><a href="#!/perfil"  style="color:blue;"> <i class="fa fa-wrench" aria-hidden="true"></i> Configuración</a></li>
 					<li ng-if="(tipoUsuario=='3' || tipoUsuario=='1') && configFab.reports "><a href="#!/reportes"  style="color:blue;"><i class="fa fa-bar-chart" aria-hidden="true"></i> Reportes</a></li>
 				</ul>
 			</div>

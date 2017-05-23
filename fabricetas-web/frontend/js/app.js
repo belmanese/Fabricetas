@@ -1,4 +1,4 @@
-var app = angular.module('fabrisetas', ['ngRoute','ngResource','ngMaterial','camisaAleatoria','720kb.socialshare']);
+var app = angular.module('fabrisetas', ['ngRoute','ngResource','ngMaterial','camisaAleatoria','720kb.socialshare','perfil']);
 app.value('fabConstans', {
     //URL_BASE_SERVICIOS:"http://52.88.20.109:8080/fabricetas/"
     URL_BASE_SERVICIOS:"http://localhost:8080/fabricetas/"
