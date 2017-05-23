@@ -7,17 +7,41 @@ camisaAleatoria.config(['$routeProvider', function($routeProvider) {
   });
 }])
 
-camisaAleatoria.controller("camisaAleatoriaCtrl",["$scope",function($scope){
+camisaAleatoria.controller("camisaAleatoriaCtrl",["$scope","servicioAutores","servicioCategoria","servicioCamisaAleatoria",
+function($scope,servicioAutores,servicioCategoria,servicioCamisaAleatoria){
 
   constructor();
   imprimirConEstampa();
 
   function constructor(){
-    // cargar lista de artistas
+    // cargar lista de temas
+    servicioCategoria.traerCategorias().query().$promise.then((datos)=>{
+      $scope.listaTemas = datos;
+    });
+
     $scope.camisaGenerada = false;
+    //traer artistas
+    servicioAutores.traerAutores().query().$promise.then((datos)=>{
+      $scope.listaArtistas = datos;
+      console.log(datos);
+    },
+    (err)=>{
+      console.log(err);
+    });
   }
 
   $scope.generarCamisa = function (){
+
+    let valores = {
+        "precioEstampa":$scope.camisaAleatoria.precioEstampa,
+        "precioCamisa":$scope.camisaAleatoria.precioCamisa,
+        "artistaId":$scope.camisaAleatoria.artista,
+        "temaId":$scope.camisaAleatoria.tema
+    }
+    console.log(valores);
+    servicioGenerarCamisas.traerCamisaGenerada(valores).query().$promise.then(function(datos){
+      console.log(datos);
+    })
     console.log($scope.camisaAleatoria);
     $scope.camisaGenerada =!$scope.camisaGenerada;
   }

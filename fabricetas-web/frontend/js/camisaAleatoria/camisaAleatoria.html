@@ -26,11 +26,8 @@
 
       <section id="artistaYRanking" class="seleccionValor">
         <p>seleccione un artista, opcionalmente un ranking y tema de la estampa</p>
-        <select class="form-control" name="tallaCamisa" ng-model="camisaAleatoria.artista">
-          <option value="seleccione">Seleccione</option>
-          <option value="Julian">Julian</option>
-          <option value="Cristina">Cristina</option>
-          <option value="Miguel">Miguel</option>
+        <select ng-show="usuarioAdmin" ng-model="camisaAleatoria.artista" ng-options="artista as artista.name for artista in listaArtistas track by artista.userId" class="form-control">
+          <option value="" selected="selected">Seleccione artista</option>
         </select>
         <br>
         <select class="form-control" name="tallaCamisa" ng-model="camisaAleatoria.ranking">
@@ -42,11 +39,9 @@
           <option value="5">5</option>
         </select>
         <br>
-        <select class="form-control" name="tallaCamisa" ng-model="camisaAleatoria.tema">
-          <option value="seleccione">Seleccione</option>
-          <option value="Musica">Musica</option>
-          <option value="Futbol">Futbol</option>
-          <option value="Frutas">Frutas</option>
+
+        <select  ng-model="camisaAleatoria.tema" ng-options="tema as tema.name for tema in listaTemas track by tema.themeId" class="form-control">
+          <option value="">Seleccione tema</option>
         </select>
 
       </section>

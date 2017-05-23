@@ -19,7 +19,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.fabricetas.domain.Stamp;
 import com.fabricetas.domain.Tshirt;
 import com.fabricetas.domain.dto.TshirtDto;
-import com.fabricetas.generator.RandomElement;
+//import com.fabricetas.generator.RandomElement;
 import com.fabricetas.repos.StampRepository;
 import com.fabricetas.repos.TshirtRepository;
 import com.fabricetas.service.StampService;

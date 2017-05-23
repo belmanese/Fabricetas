@@ -12,7 +12,7 @@ app.value('fabConstans', {
     ,changeAdress:false
     ,changePassword:true
     ,shareOnSocialNetwork:false
-    ,SC_RamdonTShirt:false
+    ,SC_RamdonTShirt:true
     ,color:false
     ,text:true
     ,authFacebook:false
