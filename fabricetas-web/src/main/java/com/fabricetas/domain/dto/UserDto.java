@@ -83,7 +83,7 @@ public class UserDto {
 
 	@Getter @Setter
 	private Collection<Tshirt> tshirt;
-/*
+/* 
 	public String getName() {
 		return this.firstName + " " + this.lastName;
 	}
