@@ -2,7 +2,7 @@ var app = angular.module('fabrisetas', ['ngRoute','ngResource','ngMaterial','cam
 app.value('fabConstans', {
     //URL_BASE_SERVICIOS:"http://52.88.20.109:8080/fabricetas/"
     URL_BASE_SERVICIOS:"http://localhost:8080/fabricetas/"
-    ,twitter:true
+    ,twitter:false
     ,facebook:false
     ,socialNetwork:false
     ,byArtist:false
@@ -18,10 +18,10 @@ app.value('fabConstans', {
     ,authFacebook:false
     ,authTwitter:false
     ,BD:true
-    ,list:true
-    ,gallery:false
+    ,list:false
+    ,gallery:true
     ,rateProducts:true
-    ,advanceShearch:false
+    ,advanceShearch:true
 });
 
 /*

@@ -17,7 +17,7 @@ function($scope,$routeParams,servicioAutores,servicioHome,servicioCookies,fabCon
      });
   }
   $scope.limpiarCarrito = function(){
-    servicioCookies.descartarCarrito();
+    servicioCookies.inicializarCarrito();
     $location.path("/");
   }
   $scope.enviarRating = function(configCalificada){
