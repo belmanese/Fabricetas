@@ -4,10 +4,12 @@
 	<parent>
 		<groupId>com.fabricetas</groupId>
 		<artifactId>Fabricetas</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.1</version>
 	</parent>
 	<artifactId>fabricetas-repository</artifactId>
 	<name>fabricetas-repository</name>
-	<description>Spring repositories</description>
+	<description>Spring repositories</description>	
+	<packaging>jar</packaging>
+    <version>0.0.1</version>	
 	
 </project>

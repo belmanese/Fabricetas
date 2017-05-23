@@ -23,4 +23,6 @@ public interface UserRepository  extends CrudRepository<User, Integer> {
 		
 	@Query("SELECT u FROM User u WHERE UPPER(u.estado) = 'A'")
 	Collection<User> findAllActivo();
+	
+	
 }

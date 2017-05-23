@@ -4,12 +4,12 @@
     <parent>
         <artifactId>Fabricetas</artifactId>
         <groupId>com.fabricetas</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
     </parent>
 
     <groupId>com.fabricetas</groupId>
     <artifactId>fabricetas-ear</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <packaging>ear</packaging>
 
     <name>fabricetas-ear</name>

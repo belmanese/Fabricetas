@@ -4,20 +4,22 @@
 	<parent>
 		<groupId>com.fabricetas</groupId>
 		<artifactId>Fabricetas</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.1</version>
 	</parent>
 	<artifactId>fabricetas-web</artifactId>
 	<packaging>war</packaging>
 	<name>fabricetas-web</name>
 	<description>Web Layer</description>
-	
+    <version>0.0.1</version>	
+
 	<dependencies>
 		<dependency>
 			<groupId>com.fabricetas</groupId>
-			<artifactId>fabricetas-repository</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<artifactId>fabricetas-generator</artifactId>
+			<version>0.0.1</version>
+			<scope>provided</scope>
 		</dependency>
-	</dependencies>
+	</dependencies>	
 
 	<build>
 		<plugins>
@@ -33,5 +35,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
+	
 </project>
