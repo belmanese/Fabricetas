@@ -1,5 +1,6 @@
 package com.fabricetas.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fabricetas.domain.Rating;
+import com.fabricetas.domain.Stamp;
 import com.fabricetas.domain.dto.RatingDto;
 import com.fabricetas.service.RatingService;
+import com.fabricetas.service.StampService;
 import com.fabricetas.util.UtilNumber;
 
 /**
@@ -31,6 +35,8 @@ public class RatingController {
 
     @Autowired
     private RatingService ratingService;
+    @Autowired
+    private StampService stampService;
 
     /**
      * To create a rating
@@ -40,9 +46,9 @@ public class RatingController {
      */
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Rating> create(@RequestBody Rating rating, UriComponentsBuilder ucBuilder) {
-        if (!UtilNumber.isNullOrZero(rating.getRatingId()))
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        return new ResponseEntity<>(ratingService.create(rating), HttpStatus.CREATED);
+    	if (!UtilNumber.isNullOrZero(rating.getRatingId()))
+    		return new ResponseEntity<>(HttpStatus.CONFLICT);
+    	return new ResponseEntity<>(ratingService.create(rating), HttpStatus.CREATED);
     }
 
     /**
@@ -96,6 +102,32 @@ public class RatingController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         ratingService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    /**
+     * To create a rating stamp relation
+     * @param rating Id and stamp Id     
+     * @return rating created
+     * @return ucBuilder to response htt status
+     */
+    @RequestMapping(value = "/stamp", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> createRatingStamp(@RequestBody ModelMap modelMap, UriComponentsBuilder ucBuilder) {
+    	
+	
+    	Rating rating = ratingService.findOne(Integer.valueOf(modelMap.get("ratingId").toString()));
+    	Stamp stamp = stampService.findOne(Integer.valueOf(modelMap.get("stampId").toString()));
+    	if (rating == null || stamp == null)
+    		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		try {
+			stamp.getRating().add(rating);
+			if(stampService.create(stamp) != null)
+				return new ResponseEntity<>(HttpStatus.CREATED);
+		} catch (Exception e) {
+			
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
     }
 
 }

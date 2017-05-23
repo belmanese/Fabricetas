@@ -1,0 +1,61 @@
+<div class="container">
+
+  <div class="row">
+    <div class="products-heading" style="margin-bottom:2%;">
+      <h3>Resumen de tu compra</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-3">
+        <button type="button" class="btn btn-sm btn-success" name="button" ng-click="limpiarCarrito();"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar a la tienda</button>
+      </div>
+      <div class="table-responsive" style="margin-top:6%;">
+        <table class="table table-hover table-bordered">
+          <thead>
+            <th class="col-md-4">Camiseta</th>
+            <th class="col-md-4">Estampa</th>
+            <th class="col-md-4">Resultado</th>
+            <th class="col-md-4">Precio</th>
+          </thead>
+          <tbody>
+            <tr ng-repeat="configuracion in resumenCompra">
+              <td>
+                <img src="{{configuracion.camiseta}}" alt="" width="200" height="200">
+              </td>
+              <td>
+                <img src="{{configuracion.estampa}}" alt="" width="200" height="200">
+                <br>
+                <div ng-show = "rating" class="col-md-12">
+                  <div class="col-md-8">
+                    <select class="form-control" ng-model="configuracion.ratingId">
+                      <option value= "0" selected>Seleccione el rating</option>
+                      <option ng-repeat="vRating in ratings" value="{{vRating.ratingId}}">{{vRating.description + "("+ vRating.value +")"}}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4">
+                    <button type="button" class="btn btn-success btn-block" ng-click="enviarRating(configuracion);">{{configuracion.mensajeBoton}}</button>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <img src="{{configuracion.resultado}}" alt="" width="200" height="200">
+                <br>
+                <a ng-show="facebook" class="btn btn-info  btn-block" socialshare socialshare-provider="facebook" socialshare-text="Camiseta personalizada" socialshare-hashtags="fabrisetas, diseñoPersonalizado" socialshare-media="http://52.88.20.109/fabrisetas/frontend/#!/">
+                  <i class="fa fa-facebook-official" aria-hidden="true"></i>
+                  Compartir en facebook
+                </a>
+                <a ng-show="twitter" class="btn btn-info  btn-block" socialshare socialshare-provider="twitter" socialshare-text="Crea  tu camiseta personalizada con Fabrisetas" socialshare-hashtags="fabrisetas, diseñoPersonalizado" socialshare-url="http://52.88.20.109/fabrisetas/frontend/#!/">
+                  <i class="fa fa-twitter" aria-hidden="true"></i>
+                  Compartir en twitter
+                </a>
+              </td>
+              <td>{{configuracion.precio | currency}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

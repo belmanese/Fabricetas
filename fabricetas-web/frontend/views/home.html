@@ -1,0 +1,120 @@
+<!-- //header -->
+<!-- banner-bottom -->
+<div class="banner-bottom">
+  <div class="products-heading">
+    <h3>Algunos temas</h3>
+    <h1>{{twitter}}</h1>
+  </div>
+  <div class="container">
+    <div class="banner-bottom-grids animated bounceInLeft">
+
+      <div class="col-md-4 bottom-grid" ng-repeat="i in [0, 1, 2]">
+        <img src="{{temas[i].path}}" alt="" width="280" height="190" />
+
+        <div class="bottom-grid-info">
+          <a href="#!/categoria-estampas/{{temas[i].themeId}}">{{temas[i].name}}</a>
+          <p>{{temas[i].description}}
+          </p>
+        </div>
+      </div>
+      <div class="clearfix"> </div>
+    </div>
+  </div>
+</div>
+<!-- banner-bottom -->
+<!-- products -->
+<div class="products">
+  <!-- container -->
+  <div class="container">
+
+    <!-- panel de busqueda o cambio de impresion de vista --><!-- panel de busqueda o cambio de impresion de vista -->
+    <!-- panel de busqueda o cambio de impresion de vista --><!-- panel de busqueda o cambio de impresion de vista -->
+    <div class="row filtros" id="filtosYCambioEstiloVista" ng-show="advanceShearch || gallery || list ">
+      <div class="col-md-4" ng-show="advanceShearch" >
+        <input type="text" placeholder="Buscar estampas" ng-model="filtrar" class="form-control">
+      </div>
+      <div class="col-md-4" ng-show="gallery && list" >
+        <button type="button" name="button" class="btn btn-success btn-block" ng-click="galeria=!galeria;lista=!lista"> <i class="fa fa-list" aria-hidden="true"></i> Ver en lista</button>
+      </div>
+    </div>
+
+      <!-- galeria en modo de galeria --><!-- galeria en modo de galeria --><!-- galeria en modo de galeria -->
+      <!-- galeria en modo de galeria --><!-- galeria en modo de galeria --><!-- galeria en modo de galeria -->
+      <div class="row" id="MostrarEnGaleria" ng-show="gallery && galeria">
+        <div class="col-md-3 product-left-grid" ng-repeat="popular in populares | filter:filtrar">
+          <div class="product-grid">
+            <div class="product-grid-text">
+              <a href="#!/ver-estampa/{{popular.stampId}}"><img src="{{popular.path}}" alt="" width="300" height="350"/></a>
+              <div class="products-grid-info">
+                <h3>{{popular.name}}</h3>
+                <h4>Rating: {{popular.totalRating}}</h4>
+                <p>{{popular.description}}</p>
+                <p> <strong> <a href="#!/navegar-autor/{{popular.artistId}}">Autor: {{popular.artistName}} </a></strong> </p>
+                <div class="price">
+                  <p>{{popular.price | currency}}</p>
+                </div>
+                <div class="like">
+                  <a href="#"><img src="images/like.png" alt="" /></a>
+                </div>
+                <div class="clearfix"> </div>
+              </div>
+              <div class="plus">
+                <a href="#!/ver-estampa/{{popular.stampId}}"><img src="images/plus.png" alt="" /></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- galeria en modo de lista --><!-- galeria en modo de lista --><!-- galeria en modo de lista -->
+      <!-- galeria en modo de lista --><!-- galeria en modo de lista --><!-- galeria en modo de lista -->
+      <div class="row" id="MostrarEnGaleria" ng-show="list && lista">
+        <div class="col-md-12">
+          <div class="table-responsive">
+       			<table class="table table-hover table-bordered" >
+       				<thead>
+       					<th>Estampa</th>
+       					<th>Nombre</th>
+       					<th>Valor</th>
+                <th>Descripción</th>
+                <th>Artista</th>
+                <th>Rating</th>
+       				</thead>
+       				<tbody>
+                 <tr ng-repeat="popular in populares | filter:filtrarHome" >
+                   <td>
+                     <a href="#!/ver-estampa/{{popular.stampId}}"><img src="{{popular.path}}" class="img-responsive" width="200" height="200"></a>
+                   </td>
+                   <td>{{popular.name}}</td>
+                   <td>{{popular.price | currency}}</td>
+                   <td>{{popular.description}}</td>
+                   <td>{{popular.artistName}}</td>
+                   <td>{{popular.totalRating}}</td>
+       					</tr>
+       				</tbody>
+       			</table>
+       		</div>
+        </div>
+      </div>
+
+
+      <div class="clearfix"> </div>
+    </div>
+  </div>
+  <!-- //container -->
+</div>
+<!-- // products -->
+<!-- products-bottom -->
+<div class="products-bottom">
+  <!-- container -->
+  <div class="container">
+    <div class="col-md-8 col-md-offset-3 map" style="margin-bottom:2%;">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.9513039009325!2d-74.06705148570501!3d4.602743596656232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f99bcb0c71f5b%3A0xcb6030026ed7246a!2sEdificio+Mario+Laserna%2C+Bogot%C3%A1!5e0!3m2!1ses!2sco!4v1489606245459" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+      <div class="location">
+        <p>Fabrisetas</p>
+      </div>
+    </div>
+    <div class="clearfix"> </div>
+  </div>
+  <!-- //container-->
+</div>

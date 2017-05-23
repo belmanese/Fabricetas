@@ -1,0 +1,99 @@
+<div class="container">
+  <div class="row" style="margin-bottom:10%;">
+    <div class="col-md-3">
+      <div class="col-md-12">
+        <h3>Tus reportes disponibles</h3>
+        <button ng-show="usuarioArtista || usuarioAdmin" ng-click="mostrarCampos('fechas')" type="button" name="button" class="btn btn-custom btn-block"><i class="fa fa-bar-chart" aria-hidden="true"></i> Estampas vendidas por fecha</button><br>
+        <button ng-show="usuarioArtista || usuarioAdmin" ng-click="mostrarCampos('temas')" type="button" name="button" class="btn btn-custom btn-block"><i class="fa fa-line-chart" aria-hidden="true"></i>Estampas vendidas por Tema</button><br>
+        <button ng-show="usuarioArtista || usuarioAdmin" ng-click="mostrarCampos('estampa')" type="button" name="button" class="btn btn-custom btn-block"><i class="fa fa-pie-chart" aria-hidden="true"></i> Todas las estampas</button><br>
+        <button ng-show="usuarioAdmin" ng-click="mostrarCampos('artista')"  type="button" name="button" class="btn btn-custom btn-block"><i class="fa fa-area-chart" aria-hidden="true"></i>Estampas vendidas por artista</button><br>
+        <button ng-show="usuarioAdmin"  ng-click="mostrarCampos('camiseta')"  type="button" name="button" class="btn btn-custom btn-block"><i class="fa fa-signal" aria-hidden="true"></i> Camisetas vendidas</button><br>
+      </div>
+      <div class="col-md-12">
+        <div class="col-md-12" ng-show="fechas">
+          <h6>Seleccione un rango de fechas</h6>
+          <label>Fecha inicial</label>
+          <input class="form-control" type="date" id="exampleInput" name="input" ng-model="fecha.inicial" placeholder="yyyy-MM-dd" min="2013-01-01" required />
+          <label>Fecha final</label>
+          <input class="form-control" type="date" id="exampleInput" name="input" ng-model="fecha.final" placeholder="yyyy-MM-dd" min="2013-01-01" required />
+          <br>
+            <select ng-show="usuarioAdmin" ng-model="artistaSeleccionadoAdmin" ng-options="artista as artista.name for artista in listaArtistas track by artista.userId" class="form-control">
+              <option value="" selected="selected">Seleccione artista</option>
+            </select>
+          <br>
+          <button type="button" name="button" class="btn btn-success btn-block" ng-click="generarReporte('fecha')">Generar reporte</button>
+        </div>
+        <div class="col-md-12" ng-show="temas">
+          <h6>Seleccione artista</h6>
+          <select ng-show="usuarioAdmin" ng-model="artistaSeleccionadoAdmin" ng-options="artista as artista.name for artista in listaArtistas track by artista.userId" class="form-control">
+            <option value="" selected="selected">Seleccione artista</option>
+          </select>
+          <br>
+          <h6>Seleccione tema</h6>
+          <select ng-model="temaSeleccionado" ng-options="tema as tema.name for tema in listaTemas track by tema.themeId" class="form-control">
+            <option value="">Seleccione tema</option>
+          </select>
+          <br>
+          <button type="button" name="button" class="btn btn-success btn-block" ng-click="generarReporte('tema')">Generar reporte</button>
+        </div>
+        <div class="col-md-12" ng-if="estampa">
+          <h6>Estampas del autor</h6>
+          <br>
+          <button type="button" name="button" class="btn btn-success btn-block" ng-click="generarReporte('estampa')">Generar reporte</button>
+        </div>
+
+        <!-- admin --> <!-- admin --> <!-- admin --> <!-- admin --> <!-- admin -->
+        <!-- admin --> <!-- admin --> <!-- admin --> <!-- admin --> <!-- admin -->
+        <div class="col-md-12" ng-show="artista">
+          <h6>Estampas del artista</h6>
+          <select ng-model="artistaSeleccionado" ng-options="artista as artista.name for artista in listaArtistas track by artista.userId" class="form-control">
+            <option value="" selected="selected">Seleccione artista</option>
+          </select>
+          <br>
+          <button type="button" name="button" class="btn btn-success btn-block" ng-click="generarReporte('artista')">Generar reporte</button>
+        </div>
+        <div class="col-md-12" ng-if="camiseta">
+          <h6>Camisetas</h6>
+          <br>
+          <button type="button" name="button" class="btn btn-success btn-block" ng-click="generarReporte('camiseta')">Generar reporte</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="table-responsive" style="margin-top:6%;">
+        <table class="table table-hover table-bordered">
+          <thead>
+            <th ng-repeat="i in titulos">
+              {{i}}
+            </th>
+          </thead>
+          <tbody>
+            <tr ng-repeat="dato in tablaReportes" ng-show="tablaBasica">
+              <td>{{dato.nombre}}</td>
+              <td>{{dato.tema}}</td>
+              <td>{{dato.valor}}</td>
+              <td>{{dato.cantidad}}</td>
+              <td>{{dato.total}}</td>
+            </tr>
+            <tr ng-repeat="dato in tablaReportes" ng-show="tablaArtista">
+              <td>{{dato.artista}}</td>
+              <td>{{dato.nombre}}</td>
+              <td>{{dato.tema}}</td>
+              <td>{{dato.valor}}</td>
+              <td>{{dato.cantidad}}</td>
+              <td>{{dato.total}}</td>
+            </tr>
+            <tr ng-repeat="dato in tablaReportes" ng-show="tablaCamiseta">
+              <td>{{dato.nombre}}</td>
+              <td>{{dato.color}}</td>
+              <td>{{dato.talla}}</td>
+              <td>{{dato.valor}}</td>
+              <td>{{dato.cantidad}}</td>
+              <td>{{dato.total}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

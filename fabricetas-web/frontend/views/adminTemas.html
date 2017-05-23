@@ -1,0 +1,69 @@
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="col-md-4">
+      <form ng-submit="cargarImagen();">
+        <fieldset style="margin-bottom:6%;">
+          <legend>Cargar un tema</legend>
+
+          <br>
+          <div class="">
+            <label>Vista previa</label>
+            <img src="{{thumbnail.dataUrl}}" alt="" class="img-responsive" width="300" height="400">
+          </div>
+
+          <br>
+          <div class="input-group">
+            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user-plus" aria-hidden="true"></i></span>
+            <input required ng-model="temaNuevo.name" type="text" class="form-control" placeholder="Nombre" aria-describedby="sizing-addon1">
+          </div>
+
+          <br>
+          <div class="input-group">
+            <textarea ng-model="temaNuevo.description" required name="name" placeholder="descripcion" class="form-control" cols="50"></textarea>
+          </div>
+
+          <br>
+          <div class="input-group">
+            <input multiple onchange="angular.element(this).scope().photoChanged(this.files)" type="file" name="file" uploader-model="file" />
+          </div>
+
+          <br>
+          <div class="col-md-12">
+            <p ng-show="temaNuevoCargado">Tema creado con éxito</p>
+            <p ng-show="temaActualizado">Tema actualizado éxito</p>
+            <input type="submit" value="{{accionRealizar}}" class="btn btn-success btn-block">
+            <button type="button" name="button" class="btn btn-danger btn-block" ng-if="botonCancelar" ng-click="cancelar();">Cancelar</button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="col-md-8">
+      <fieldset>
+        <legend>Temas</legend>
+        <div class="table-responsive">
+     			<table class="table table-hover table-bordered" >
+     				<thead>
+     					<th>Imagen Tema</th>
+     					<th>Nombre</th>
+              <th>Descripción</th>
+              <th>Editar</th>
+     				</thead>
+     				<tbody>
+               <tr ng-repeat="tema in temas">
+                 <td>
+                   <img src="{{tema.path}}" class="img-responsive" width="300" height="400">
+                 </td>
+                 <td>{{tema.name}}</td>
+                 <td>{{tema.description}}</td>
+                 <td>
+                   <button type="button" class="btn btn-info zoom" ng-click="editarTema(tema.indice);"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+     						 </td>
+     					</tr>
+     				</tbody>
+     			</table>
+     		</div>
+      </fieldset>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,149 @@
+<div class="container">
+  <div class="row">
+    <form ng-submit="">
+      <div class="col-md-6"  class="animated fadeIn" ng-if="tieneItemsAgregados">
+        <fieldset>
+          <legend>Selecciona un medio de pago</legend>
+          <div class="col-md-4 divMediosPago" ng-class="bancaria">
+            <img src="images/transferencia-bancaria.png" class="img-responsive img-mediosPago" ng-click="bancaria='divMediosPagoSeleccionado';credito='';efectivo='';efecty=''">
+            <label>Pago por transferencia bancaria</label>
+          </div>
+          <div class="col-md-4 divMediosPago" ng-class="credito">
+            <img src="images/tarjetas-de-credito.jpg" class="img-responsive img-mediosPago" ng-click="bancaria='';credito='divMediosPagoSeleccionado';efectivo='';efecty=''">
+            <label>Pago con tarjeta de crédito</label>
+          </div>
+          <div class="col-md-4 divMediosPago" ng-class="efectivo">
+            <img src="images/efectivo.jpg" class="img-responsive img-mediosPago" ng-click="bancaria='';credito='';efectivo='divMediosPagoSeleccionado';efecty=''">
+            <label>Pago contra entrega</label>
+          </div>
+          <div class="col-md-4 divMediosPago" ng-class="efecty">
+            <img src="images/efecty.png" class="img-responsive img-mediosPago" ng-click="bancaria='';credito='';efectivo='';efecty='divMediosPagoSeleccionado'">
+            <label>Pago en efecty</label>
+          </div>
+        </fieldset>
+      </div>
+
+      <!-- datos de envio, detalle de compra y pago --><!-- datos de envio, detalle de compra y pago --><!-- datos de envio, detalle de compra y pago -->
+      <!-- datos de envio, detalle de compra y pago --><!-- datos de envio, detalle de compra y pago --><!-- datos de envio, detalle de compra y pago -->
+      <div class="col-md-6" ng-if="tieneItemsAgregados">
+        <fieldset>
+          <legend>Selecciona tus datos de envío</legend>
+          <div class="form-group">
+            <div class="col-md-12">
+              <select required  ng-model="direccion" class="form-control">
+                <option value="1">Usar direccion registrada</option>
+                <option value="2">Registrar nueva dirección</option>
+              </select>
+              <br><br>
+            </div>
+            <div class="col-md-12" ng-if="direccion==1">
+              <div class="input-group">
+                <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user" aria-hidden="true"></i></span>
+                <input disabled required  ng-model="datosUsuario.nombre" type="text" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-road" aria-hidden="true"></i></span>
+                <input disabled required  ng-model="datosUsuario.direccion" type="text" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
+              </div>
+            </div>
+
+            <!--  espacio para crear direcciones --><!--  espacio para crear direcciones --><!--  espacio para crear direcciones -->
+            <!--  espacio para crear direcciones --><!--  espacio para crear direcciones --><!--  espacio para crear direcciones -->
+            <div class="col-md-12" ng-if="direccion==2">
+
+              <select required  ng-model="odireccion.pais" class="form-control">
+                <option value="">Pais</option>
+                <option value="Colombia">Colombia</option>
+                <option value="Argentina">Argentina</option>
+              </select>
+              <br>
+              <select required  ng-model="odireccion.departamento" class="form-control">
+                <option value="">Departamento</option>
+                <option value="Bogotá DC" selected>Bogotá DC</option>
+                <option value="2">Otro</option>
+              </select>
+              <br>
+              <select required  ng-model="odireccion.ciudad" class="form-control">
+                <option value="">Ciudad</option>
+                <option value="Bogota" selected>Bogota</option>
+                <option value="2">Otro</option>
+              </select>
+              <br>
+              <div class="input-group">
+                <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-street-view" aria-hidden="true"></i></span>
+                <input required  ng-model="odireccion.direccion" type="text" class="form-control" placeholder="Direccion" aria-describedby="sizing-addon1">
+              </div>
+            </div>
+
+            <!-- datos de lacompra fijos --><!-- datos de lacompra fijos --><!-- datos de lacompra fijos --><!-- datos de lacompra fijos -->
+            <!-- datos de lacompra fijos --><!-- datos de lacompra fijos --><!-- datos de lacompra fijos -->
+            <div class="col-md-12" class="animated fadeIn">
+              <h2>Detalles de la compra</h2>
+              <label>Items:</label>
+            </div>
+            <div class="col-md-12" ng-repeat="configuracion in carrito">
+              <div class="col-md-12" ng-repeat="item in configuracion">
+                <div class="col-md-6">
+                  <p>{{item.name}}</p>
+                </div>
+                <div class="col-md-6">
+                   <strong>{{item.price | currency}}</strong>
+                </div>
+                <hr>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <strong style="margin-left:11%;">Total: </strong>
+            </div>
+            <div class="col-md-6" ng-if="tieneItemsAgregados" >
+              {{total | currency}}
+            </div>
+          </div>
+          <div class="col-md-12">
+            <br>
+            <button ng-hide="!compraRealizada" type="button" name="button" class="btn btn-warning btn-block" ng-click="verResumenCompra()">Ver Resumen de la compra</button>
+            <br>
+            <button ng-hide="compraRealizada" type="button" name="button" class="btn btn-warning btn-block" ng-click="seguirComprando()">Seguir comprando</button>
+            <br>
+            <button ng-hide="compraRealizada" type="button" name="button" class="btn btn-success btn-block" ng-click="registrarFactura()">Realizar pago</button>
+            <br>
+            <button ng-hide="compraRealizada" type="button" name="button" class="btn btn-danger btn-block" ng-click="descartarCarrito();">Descartar</button>
+          </div>
+        </fieldset>
+      </div>
+    </form>
+    <!-- Caso en elque no tiene nada agregado al carrito -->
+    <div class="col-md-12" style="text-align:center;"  ng-if="!tieneItemsAgregados">
+      <h1 class="animated rubberBand">Tu carrito está vacío</h1>
+      <img src="images/carrito.gif" alt="" class="animated bounceInLeft">
+      <br><br>
+    </div>
+
+    <!-- cargando  pago -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title" >Estamos procesando tu pedido</h4>
+          </div>
+          <div class="modal-body" style="text-align:center;">
+            <h2>Gracias por tu compra.</h2>
+            <a href="#!/">Volver al inicio.</a>
+            <br>
+            <img src="images/preparandoEntrega.gif" alt="preparando tu pedido" width="400" height="400">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- cargando pago -->
+
+
+  </div>
+</div>

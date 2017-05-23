@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <section id="SeccionValorEstampa" class="seleccionValor">
+        <p>Digite el precio máximo de la estampa a incluir</p>
+        <input type="number" name="precio maximo" value="3000" min="3000" class="form-control" ng-model="camisaAleatoria.precioEstampa">
+      </section>
+      <section id="seccionValorCamisa" class="seleccionValor">
+        <p>Digite el precio máximo de la camisa a incluir</p>
+        <input type="number" name="precio maximo" value="3000" min="3000" class="form-control" ng-model="camisaAleatoria.precioCamisa">
+      </section>
+
+      <section id="seccionTalla" class="seleccionValor">
+        <p>Seleccione la talla de su camisa</p>
+        <select class="form-control" name="tallaCamisa" ng-model="camisaAleatoria.talla">
+          <option value="seleccione">Seleccione</option>
+          <option value="xs">xs</option>
+          <option value="s">S</option>
+          <option value="m">M</option>
+          <option value="l">L</option>
+          <option value="xl">XL</option>
+          <option value="xxl">XXL</option>
+          <option value="xxl">XXL</option>
+        </select>
+      </section>
+
+      <section id="artistaYRanking" class="seleccionValor">
+        <p>seleccione un artista, opcionalmente un ranking y tema de la estampa</p>
+        <select class="form-control" name="tallaCamisa" ng-model="camisaAleatoria.artista">
+          <option value="seleccione">Seleccione</option>
+          <option value="Julian">Julian</option>
+          <option value="Cristina">Cristina</option>
+          <option value="Miguel">Miguel</option>
+        </select>
+        <br>
+        <select class="form-control" name="tallaCamisa" ng-model="camisaAleatoria.ranking">
+          <option value="seleccione">Seleccione</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <br>
+        <select class="form-control" name="tallaCamisa" ng-model="camisaAleatoria.tema">
+          <option value="seleccione">Seleccione</option>
+          <option value="Musica">Musica</option>
+          <option value="Futbol">Futbol</option>
+          <option value="Frutas">Frutas</option>
+        </select>
+
+      </section>
+      <section style="text-align:center;padding-left:5%;padding-right:5%;margin-bottom:5%;">
+        <button type="button" class="btn btn-success btn-block btn-sm" name="button" ng-click="generarCamisa()">¡Generar camisa!</button>
+      </section>
+    </div>
+    <div class="col-md-8" style="text-align:center;">
+      <section ng-show="!camisaGenerada">
+        <h1>¡Genera tu camisa!</h1>
+        <p>Buscaremos entre nuestras mejores estampas y mas bonitas camisas para crear un estilo único para ti.</p>
+        <img  class="img-responsive animated bounceInUp" src="http://ropitabebes.net/wp-content/uploads/2017/04/Camisas-estampadas-de-bebe-1.jpg" alt="imagen entrada camisas generadas" style="width:90%; height:90%;">
+      </section>
+      <section ng-show="camisaGenerada">
+        <h1>¡Genera tu camisa!</h1>
+        <p>Buscaremos entre nuestras mejores estampas y mas bonitas camisas para crear un estilo único para ti.</p>
+        <canvas id="canvas"></canvas>
+        <div class="col-md-6">
+          <button type="button" name="button" class="btn btn-success btn-block"> <i class="fa fa-cart-plus" aria-hidden="true"></i> Agregar al carrito</button>
+        </div>
+        <div class="col-md-6">
+          <button type="button" name="button" class="btn btn-warning btn-block"> <i class="fa fa-refresh" aria-hidden="true"></i> Generar de nuevo</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

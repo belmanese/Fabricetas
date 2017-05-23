@@ -1,0 +1,101 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Usuarios del sistema</h3>
+        <div class="table-responsive">
+          <table class="table table-hover table-bordered">
+            <thead>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Identificacion</th>
+                <th>Tipo</th>
+                <th>Email</th>
+                <th>Eliminar</th>
+                <th>Editar</th>
+            </thead>
+            <tbody>
+              <tr ng-repeat="usuario in listaUsuarios">
+                <td>{{usuario.userId}}</td>
+                <td>{{usuario.name}}</td>
+                <td>{{usuario.identificationType}} {{usuario.identificationNumber}}</td>
+                <td>{{usuario.role[0].name}}</td>
+                <td>{{usuario.email==null ? 'No registrado':usuario.email }}</td>
+                <td>
+                  <button type="button" name="button" class="btn btn-danger" ng-click="eliminarUsuario(usuario.userId);"> <i class="fa fa-times" aria-hidden="true" ></i> </button>
+                </td>
+                <td>
+                  <button type="button" name="button" class="btn btn-warning" ng-click="editarUsuario(usuario.indice);"> <i class="fa fa-pencil" aria-hidden="true"></i> </button>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="7">
+                  <button type="button" name="button" class="btn btn-success btn-block" ng-click="crearUsuario();">Crear usuario</button>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-12" style="margin-bottom:7%;" ng-show="nuevoOActualizar">
+        <h3>{{titulo}}</h3>
+        <form ng-submit="crearOActualizarUsuario();">
+          <div class="col-md-6">
+            <div class="input-group col-md-12">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-address-card" aria-hidden="true"></i></span>
+              <input required  ng-model="usuarioSeleccionado.name" type="text" class="form-control" placeholder="Nombre" aria-describedby="sizing-addon1">
+            </div>
+            <br>
+            <div class="input-group col-md-12">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
+              <input required  ng-model="usuarioSeleccionado.password" type="password" class="form-control" placeholder="Contraseña" aria-describedby="sizing-addon1">
+            </div>
+            <br>
+            <div class="input-group col-md-12">
+              <select ng-model="usuarioSeleccionado.identificationType" name="selectbasic" class="form-control">
+                <option value="CC" selected="">Cédula de ciudadania</option>
+                <option value="CE">Cédula extrajería</option>
+              </select>
+            </div>
+            <br>
+            <div class="input-group col-md-12">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-address-card" aria-hidden="true"></i></span>
+              <input required  ng-model="usuarioSeleccionado.identificationNumber" type="text" class="form-control" placeholder="Identificación" aria-describedby="sizing-addon1">
+            </div>
+            <br>
+            <div class="input-group col-md-12">
+              <select ng-model="usuarioSeleccionado.tipo" name="selectbasic" class="form-control">
+                <option value="2" selected="">Cliente</option>
+                <option value="1">Administrador</option>
+                <option value="3">Artista</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="input-group col-md-12">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user-circle-o" aria-hidden="true"></i></span>
+              <input required  ng-model="usuarioSeleccionado.firstName" type="text" class="form-control" placeholder="Primer nombre" aria-describedby="sizing-addon1">
+            </div>
+            <br>
+            <div class="input-group col-md-12">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user-circle-o" aria-hidden="true"></i></span>
+              <input required  ng-model="usuarioSeleccionado.lastName" type="text" class="form-control" placeholder="Apellidos" aria-describedby="sizing-addon1">
+            </div>
+            <br>
+            <div class="input-group col-md-12">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+              <input required  ng-model="usuarioSeleccionado.email" type="text" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <br>
+            <input type="submit" name="button" class="btn btn-success btn-block" value="{{accion}}"/>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+</div>

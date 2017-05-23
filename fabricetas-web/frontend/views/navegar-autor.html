@@ -1,0 +1,101 @@
+<div class="container">
+
+  <!-- panel de busqueda o cambio de impresion de vista --><!-- panel de busqueda o cambio de impresion de vista -->
+  <!-- panel de busqueda o cambio de impresion de vista --><!-- panel de busqueda o cambio de impresion de vista -->
+  <div class="row filtros" id="filtosYCambioEstiloVista" ng-show="advanceShearch || gallery || list ">
+    <div class="col-md-4" ng-show="advanceShearch" >
+      <input type="text" placeholder="Buscar estampas" ng-model="filtrar" class="form-control">
+    </div>
+    <div class="col-md-4" ng-show="gallery && list" >
+      <button type="button" name="button" class="btn btn-success btn-block" ng-click="galeria=!galeria;lista=!lista"> <i class="fa fa-list" aria-hidden="true"></i> Ver en lista</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="products-heading" style="margin-bottom:2%;">
+      <h3 ng-repeat="iAutor in autores | filter:{userId:autor}">Estampas de {{iAutor.firstName + " "+ iAutor.lastName}}</h3>
+    </div>
+  </div>
+  <div class="row"  ng-show="gallery && galeria">
+    <div class="col-md-12">
+      <div class="col-md-3">
+        <div class="col-md-12" id="otrosAutores">
+          <h2>Algunos de nuestros autores</h2>
+          <img src="images/tienda_autores.png" alt="" class="img-responsive" style="margin-top:2%;">
+          <ul>
+            <li ng-repeat="iAutor in autores">
+              <a href="#!/navegar-autor/{{iAutor.userId}}">{{iAutor.firstName + " "+ iAutor.lastName}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="col-md-4 product-left-grid" ng-repeat="estampa in estampasAutor | filter:filtrar | orderBy:'autor' ">
+          <div class="product-grid">
+            <div class="product-grid-text">
+              <a href="#!/ver-estampa/{{estampa.stampId}}"><img src="{{estampa.path}}" alt="" width="300" height="350"/></a>
+              <div class="products-grid-info">
+                <h3>{{estampa.name}}</h3>
+                <h4>Rating: {{estampa.totalRating}}</h4>
+                <p>{{estampa.description}}</p>
+                <p> <strong> <a href="#!/navegar-autor/{{estampa.artistId}}">Autor: {{estampa.artistName}} </a></strong> </p>
+                <div class="price">
+                  <p>{{estampa.price | currency}}</p>
+                </div>
+                <div class="like">
+                  <a href="#"><img src="images/like.png" alt="" /></a>
+                </div>
+                <div class="clearfix"> </div>
+              </div>
+              <div class="plus">
+                <a href="#!/ver-estampa/{{estampa.stampId}}"><img src="images/plus.png" alt="" /></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- galeria en modo de lista --><!-- galeria en modo de lista --><!-- galeria en modo de lista -->
+  <!-- galeria en modo de lista --><!-- galeria en modo de lista --><!-- galeria en modo de lista -->
+    <div class="row"  id="MostrarEnGaleria" ng-show="list && lista">
+      <div class="col-md-12">
+        <div class="col-md-3">
+          <div class="col-md-12" id="otrosAutores">
+            <h2>Algunos de nuestros autores</h2>
+            <img src="images/tienda_autores.png" alt="" class="img-responsive" style="margin-top:2%;">
+            <ul>
+              <li ng-repeat="iAutor in autores">
+                <a href="#!/navegar-autor/{{iAutor.userId}}">{{iAutor.firstName + " "+ iAutor.lastName}}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="table-responsive col-md-9">
+          <table class="table table-hover table-bordered" >
+            <thead>
+              <th>Estampa</th>
+              <th>Nombre</th>
+              <th>Valor</th>
+              <th>Descripción</th>
+              <th>Artista</th>
+              <th>Rating</th>
+            </thead>
+            <tbody>
+               <tr ng-repeat="popular in estampasAutor | filter:filtrarHome" >
+                 <td>
+                   <a href="#!/ver-estampa/{{popular.stampId}}"><img src="{{popular.path}}" class="img-responsive" width="200" height="200"></a>
+                 </td>
+                 <td>{{popular.name}}</td>
+                 <td>{{popular.price | currency}}</td>
+                 <td>{{popular.description}}</td>
+                 <td>{{popular.artistName}}</td>
+                 <td>{{popular.totalRating}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+</div>

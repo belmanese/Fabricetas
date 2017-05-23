@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <div class="products-heading" style="margin-bottom:2%;">
+      <h3>{{autor}}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="col-md-12" id="otrosAutores">
+        <h2>Algunos de nuestros autores</h2>
+        <img src="images/tienda_autores.png" alt="" class="img-responsive" style="margin-top:2%;">
+        <ul>
+          <li><a href="#!/navegar-autor/">Tony</a></li>
+          <li><a href="#!/navegar-autor/Julian">Julian</a></li>
+          <li><a href="#!/navegar-autor/Belman">Belman</a></li>
+          <li><a href="#!/navegar-autor/Alfonso">Alfonso</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="col-md-3 product-left-grid" ng-repeat="popular in populares | filter:{$:nombre} | orderBy:filtrarPor()">
+        <div class="product-grid">
+          <div class="product-grid-text">
+            <a href="#!/ver-estampa/{{popular.estampaId}}"><img src="{{popular.urlImagen}}" alt="" width="300" height="350"/></a>
+            <div class="products-grid-info">
+              <h3>{{popular.nombre}}</h3>
+              <h4>Rating: {{popular.rating}}</h4>
+              <p>{{popular.descripcion}}</p>
+              <p> <strong> <a href="#!/navegar-autor/{{popular.autor}}">Autor: {{popular.autor}} </a></strong> </p>
+              <div class="price">
+                <p>{{popular.valor | currency}}</p>
+              </div>
+              <div class="like">
+                <a href="#"><img src="images/like.png" alt="" /></a>
+              </div>
+              <div class="clearfix"> </div>
+            </div>
+            <div class="plus">
+              <a href="#!/ver-estampa/{{popular.estampaId}}"><img src="images/plus.png" alt="" /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

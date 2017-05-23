@@ -1,0 +1,48 @@
+<!-- banner-bottom -->
+<!-- products -->
+<div class="products">
+  <!-- container -->
+  <div class="container">
+    <div class="products-heading">
+      <h3>Camisetas disponibles</h3>
+    </div>
+    <div class="products-grids">
+      <div class="col-md-3 animated bounceIn" style="background-color:rgba(215, 44, 44, 0.3);border-radius:5px;padding:3%;">
+        <h4>Estampa seleccionada</h4>
+        <img src="{{estampaSeleccionada.path}}"  width="300" height="350" class="img-responsive">
+        <p>{{estampaSeleccionada.name}}</p>
+        <p>{{estampaSeleccionada.price | currency}}</p>
+        <p>{{estampaSeleccionada.description}}</p>
+        <button type="button" name="button" class="btn btn-warning btn-block" ng-click="volverASeleccion();"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Volver a seleccionar </button>
+      </div>
+
+
+      <div class="col-md-3 product-left-grid" ng-repeat="camisa in listaCamisas">
+        <div class="product-grid  animated bounceInUp">
+          <div class="product-grid-text">
+            <a ng-click="verDetalleCamiseta(camisa.tshirtId);"><img src="{{camisa.path}}" alt="" width="300" height="350"/></a>
+            <div class="products-grid-info">
+              <h3>{{camisa.name}}</h3>
+              <p>{{camisa.description}}</p>
+              <div class="price col-md-12" style="text-align:center;">
+                <p>{{camisa.price | currency}}</p>
+              </div>
+
+              <div class="col-md-12">
+                <button type="button" name="button" class="btn btn-primary btn-block" ng-click="verDetalleCamiseta(camisa.tshirtId);">¡Elegir!</button>
+              </div>
+              <div class="clearfix"> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="clearfix"> </div>
+    </div>
+  </div>
+  <!-- //container -->
+</div>
+<!-- // products -->
+<!-- products-bottom -->

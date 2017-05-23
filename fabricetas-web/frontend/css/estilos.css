@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis');
+h1,h2,h3,h4,h5,h6,p,legend,label,a,li,button,input,tr,td{
+	font-family: 'Dosis', sans-serif;
+}
+.login{
+  margin: 5%;
+  padding: 10%;
+  -webkit-box-shadow: 2px 4px 13px 2px rgba(0,0,0,0.75);
+  -moz-box-shadow: 2px 4px 13px 2px rgba(0,0,0,0.75);
+  box-shadow: 2px 4px 13px 2px rgba(0,0,0,0.75);
+  border-radius: 7px;
+  width: 100%;
+}
+a{
+  cursor: pointer;
+}
+.imgvistadetallada{
+  max-width: 250px;
+  max-height: 450px;
+}
+.espacioColores{
+  margin:4px;
+}
+.cuadradosRojo{
+  width: 30px;
+  height: 30px;
+  background: red;
+  cursor: pointer;
+}
+.cuadradosVerde{
+  width: 30px;
+  height: 30px;
+  background: green;
+  cursor: pointer;
+}
+.cuadradosAzul{
+  width: 30px;
+  height: 30px;
+  background: blue;
+  cursor: pointer;
+}
+
+.cuadradosGrises{
+  width: 30px;
+  height: 30px;
+  background:gray;
+  cursor: pointer;
+}
+.cuadradosNegro{
+  width: 30px;
+  height: 30px;
+  background:black;
+  cursor: pointer;
+}
+.cuadradosColor{
+  width: 30px;
+  height: 30px;
+  background:#893131;
+  cursor: pointer;
+}
+.cuadradosColorUno{
+  width: 30px;
+  height: 30px;
+  background:#00F5B4;
+  cursor: pointer;
+}
+.cuadradosColorDos{
+  width: 30px;
+  height: 30px;
+  background:#92F059;
+  cursor: pointer;
+}
+.cuadradosTalla{
+  padding: 2px;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  background: #F1F6EF;
+}
+.img-login{
+  max-width: 400px;
+  max-height: 800px;
+  margin-left: 3%;
+}
+.img-mediosPago{
+  max-width: 150px;
+  max-height: 150px;
+  cursor: pointer;
+}
+.divMediosPago{
+    height: 230px;
+    border: 1px solid rgba(36, 88, 255, 0.4);
+    margin-bottom: 8%;
+    margin-left: 2%;
+    border-radius: 5px;
+    padding: 3%;
+}
+.divMediosPago label{
+  margin-top: 15%;
+  font-size: 12px;
+}
+.divMediosPago:hover{
+  transition: 0.6s all ease;
+  -webkit-box-shadow: 1px 12px 26px -2px rgba(4,7,15,1);
+  -moz-box-shadow: 1px 12px 26px -2px rgba(4,7,15,1);
+  box-shadow: 1px 12px 26px -2px rgba(4,7,15,1);
+}
+.divMediosPagoSeleccionado{
+  border: 1px solid green;
+  -webkit-box-shadow: 1px 12px 26px -2px rgba(4,7,15,1);
+  -moz-box-shadow: 1px 12px 26px -2px rgba(4,7,15,1);
+  box-shadow: 1px 12px 26px -2px rgba(4,7,15,1);
+}
+.filtros{
+	margin-bottom:3%;
+	padding: 2%;
+	border-radius: 4px;
+	background-color: rgba(255, 205, 255, 0.4);
+}
