@@ -147,6 +147,10 @@ public class UserController {
         else if(!userService.exist(user.getUserId()))
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         user.setEstado( "A" );
+        
+        User usuario = userService.findOne( user.getUserId() );
+        user.setRole( usuario.getRole() );
+        
         return new ResponseEntity<>(userService.update(user), HttpStatus.OK);
     }
 
