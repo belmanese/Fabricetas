@@ -134,7 +134,7 @@ public class User implements Serializable {
 	public UserDto getDto(){
 		return new UserDto(
 			userId, email, firstName, identificationNumber,
-			identificationType, lastName, ssoId, password);
+			identificationType, lastName, ssoId, password, name);
 	}
 	
 }

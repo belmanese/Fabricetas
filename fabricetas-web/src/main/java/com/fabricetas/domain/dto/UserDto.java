@@ -89,7 +89,8 @@ public class UserDto {
 	}
 */
 	public UserDto(Integer userId, String email, String firstName, String identificationNumber,
-				   String identificationType, String lastName, String ssoId, String password) {
+				   String identificationType, String lastName, String ssoId, String password, String name) {
+		this.name = name;
 		this.userId = userId; this.email = email; this.firstName = firstName;
 		this.identificationNumber = identificationNumber;
 		this.identificationType = identificationType;
