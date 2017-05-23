@@ -7,14 +7,14 @@ camisaAleatoria.config(['$routeProvider', function($routeProvider) {
   });
 }])
 
-camisaAleatoria.controller("camisaAleatoriaCtrl",["$scope","servicioAutores","servicioCategoria","servicioCamisaAleatoria",
-function($scope,servicioAutores,servicioCategoria,servicioCamisaAleatoria){
+camisaAleatoria.controller("camisaAleatoriaCtrl",["$scope","$location","servicioAutores","servicioCategoria","servicioCamisaAleatoria","servicioCookies",
+function($scope,$location,servicioAutores,servicioCategoria,servicioCamisaAleatoria,servicioCookies){
 
   constructor();
-  imprimirConEstampa();
 
   function constructor(){
     // cargar lista de temas
+    $scope.texto = {};
     servicioCategoria.traerCategorias().query().$promise.then((datos)=>{
       $scope.listaTemas = datos;
     });
@@ -31,23 +31,42 @@ function($scope,servicioAutores,servicioCategoria,servicioCamisaAleatoria){
   }
 
   $scope.generarCamisa = function (){
-
-    let valores = {
-        "precioEstampa":$scope.camisaAleatoria.precioEstampa,
-        "precioCamisa":$scope.camisaAleatoria.precioCamisa,
-        "artistaId":$scope.camisaAleatoria.artista,
-        "temaId":$scope.camisaAleatoria.tema
+    try
+    {
+      let valores = {
+          "precioEstampa":$scope.camisaAleatoria.precioEstampa,
+          "precioCamisa":$scope.camisaAleatoria.precioCamisa,
+          "artistaId":$scope.camisaAleatoria.artista.userId,
+          "temaId":$scope.camisaAleatoria.tema.themeId
+      }
+      console.log(valores);
+      servicioCamisaAleatoria.traerCamisaGenerada(valores).query().$promise.then(function(datos){
+        console.log(datos);
+      })
     }
-    console.log(valores);
-    servicioGenerarCamisas.traerCamisaGenerada(valores).query().$promise.then(function(datos){
-      console.log(datos);
-    })
-    console.log($scope.camisaAleatoria);
+    catch (e)
+    {
+      console.log(e);
+      let valores = {
+          "precioEstampa":"",
+          "precioCamisa":"",
+          "artistaId":"",
+          "temaId":""
+      }
+      console.log(valores);
+      servicioCamisaAleatoria.traerCamisaGenerada(valores).get().$promise.then(function(datos){
+        $scope.objetoCamisa = datos;
+        $scope.imprimirConEstampa(datos.stamp[0].path,datos.path);
+        $scope.imgEstampa=datos.stamp[0].path;
+        $scope.imgCamisa=datos.path;
+        console.log(datos);
+      })
+    }
     $scope.camisaGenerada =!$scope.camisaGenerada;
   }
 
 
-  function imprimirConEstampa(){
+  $scope.imprimirConEstampa =function (imgEstampa,imgCamisa){
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
     canvas.width = 700;
@@ -60,17 +79,30 @@ function($scope,servicioAutores,servicioCategoria,servicioCamisaAleatoria){
     img1.onload = function() {
       canvas.width = 400;
       canvas.height = 700;
-      img2.src = "http://mascotafiel.com/wp-content/uploads/2016/03/hasta-qué-edad-crece-un-gato-1_opt.jpg";
+      img2.src = imgEstampa;
     };
     img2.onload = function() {
       context.globalAlpha = 1.0;
       context.drawImage(img1, 0, 0,400,700);
       context.drawImage(img2, 110, 180,180,200);
-      context.fillText("Texto en el Canvas para probar !",200,200);
+      context.fillText($scope.texto.texto,$scope.texto.coordx,$scope.texto.coordy);
     };
-    img1.src = "http://issuprimentos.com.br/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/c/a/camiseta.jpg";
+    img1.src = imgCamisa;
   }
 
-
+  $scope.agregarCarrito = function (){
+    if(servicioCookies.validarSiEstaAutenticado()){
+      var canvas = document.getElementById('canvas');
+      var urlResultado = canvas.toDataURL("image/png");
+      $scope.total = parseInt($scope.objetoCamisa.price) + parseInt($scope.objetoCamisa.stamp[0].price);
+      var estampa = angular.copy($scope.objetoCamisa);
+      delete $scope.objetoCamisa["stamp"];
+      servicioCookies.aregarAlCarrito($scope.objetoCamisa,estampa.stamp[0],$scope.total, urlResultado);
+      $location.path("/pagar");
+    }
+    else {
+      alert("Primero debes iniciar sesión");
+    }
+  }
 
 }]);

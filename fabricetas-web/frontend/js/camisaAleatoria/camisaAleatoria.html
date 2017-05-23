@@ -26,7 +26,7 @@
 
       <section id="artistaYRanking" class="seleccionValor">
         <p>seleccione un artista, opcionalmente un ranking y tema de la estampa</p>
-        <select ng-show="usuarioAdmin" ng-model="camisaAleatoria.artista" ng-options="artista as artista.name for artista in listaArtistas track by artista.userId" class="form-control">
+        <select ng-model="camisaAleatoria.artista" ng-options="artista as artista.name for artista in listaArtistas track by artista.userId" class="form-control">
           <option value="" selected="selected">Seleccione artista</option>
         </select>
         <br>
@@ -59,11 +59,29 @@
         <h1>¡Genera tu camisa!</h1>
         <p>Buscaremos entre nuestras mejores estampas y mas bonitas camisas para crear un estilo único para ti.</p>
         <canvas id="canvas"></canvas>
-        <div class="col-md-6">
-          <button type="button" name="button" class="btn btn-success btn-block"> <i class="fa fa-cart-plus" aria-hidden="true"></i> Agregar al carrito</button>
+        <br>
+        <label>Texto</label>
+        <input type="text" class="form-control" name="" value="" ng-model="texto.texto" ng-blur="imprimirConEstampa(imgEstampa,imgCamisa)">
+        <br>
+        <div class="col-md-12">
+          <label>Ubicación</label>
         </div>
         <div class="col-md-6">
-          <button type="button" name="button" class="btn btn-warning btn-block"> <i class="fa fa-refresh" aria-hidden="true"></i> Generar de nuevo</button>
+            <input type="number" class="form-control" name="" value="" ng-model="texto.coordx" ng-blur="imprimirConEstampa(imgEstampa,imgCamisa)">
+        </div>
+        <div class="col-md-6">
+          <input type="number" class="form-control" name="" value="" ng-model="texto.coordy" ng-blur="imprimirConEstampa(imgEstampa,imgCamisa)">
+        </div>
+
+        <br>
+        <p>Valor de la camisa {{objetoCamisa.price}}</p>
+        <p>Valor de la estampa {{objetoCamisa.stamp[0].price}}</p>
+        <br>
+        <div class="col-md-6">
+          <button type="button" name="button" class="btn btn-success btn-block" ng-click="agregarCarrito();"> <i class="fa fa-cart-plus" aria-hidden="true"></i> Agregar al carrito</button>
+        </div>
+        <div class="col-md-6">
+          <button type="button" name="button" class="btn btn-warning btn-block"  ng-click="generarCamisa()"> <i class="fa fa-refresh" aria-hidden="true"></i> Generar de nuevo</button>
         </div>
       </section>
     </div>

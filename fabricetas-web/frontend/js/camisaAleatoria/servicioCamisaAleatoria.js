@@ -4,7 +4,14 @@ function(fabConstans,$http,$q,$resource){
   var dirServ = fabConstans.URL_BASE_SERVICIOS;
 
   vm.traerCamisaGenerada = function (valores){
-    var ruta = "precioEstampa="+valores.precioEstampa+"&precioCamisa="+valores.precioCamisa+"&artistaId="+valores.artistaId+"&temaId="+valores.temaId;
-    return $resource(dirServ+"tshirt/random/?"+ruta);
+    if(valores.precioEstampa=="")
+    {
+      return $resource(dirServ+"tshirt/random");      
+    }
+    else
+    {
+      var ruta = "precioEstampa="+valores.precioEstampa+"&precioCamisa="+valores.precioCamisa+"&artistaId="+valores.artistaId+"&temaId="+valores.temaId;
+      return $resource(dirServ+"tshirt/random/?"+ruta);
+    }
   }
 }])

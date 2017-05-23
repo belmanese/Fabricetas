@@ -78,9 +78,10 @@ app.service('servicioCookies',["$http","$q","$resource",function($cookies){
     return $cookies.resumen;
   }
   vm.descartarCarrito = function (){
-    delete $cookies["total"];
-    delete $cookies["carrito"];
-    delete $cookies["resumen"];
+    vm.inicializarCarrito();
+    // delete $cookies["total"];
+    // delete $cookies["carrito"];
+    // delete $cookies["resumen"];
   }
 
 
