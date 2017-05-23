@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.Transient;
+
 import com.fabricetas.domain.dto.AddressDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -44,10 +46,11 @@ public class Address implements Serializable {
 	@Getter @Setter
 	@JoinColumn(name="USER_ID")
     private User user;
+	//private Integer user;
 	
 	@JsonIgnore
 	public AddressDto getDto(){
-		return new AddressDto(addressId, name);
+		return new AddressDto(addressId, name, user);
 	}
 
 }

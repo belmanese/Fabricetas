@@ -21,9 +21,23 @@ public class AddressDto {
 
 	@Getter @Setter
     private User user;
+	//private Integer user;
+	
+	@Getter @Setter
+    private Integer userId;
 
-    public AddressDto(Integer addressId, String name) {
-        this.addressId = addressId; this.name = name;
+    public AddressDto(Integer addressId, String name, User user) {
+        this.addressId = addressId; 
+        this.name = name;
+        this.user = user;
     }
 
+    public AddressDto(Integer addressId, String name, Integer userId) {
+        this.addressId = addressId; 
+        this.name = name;
+        this.userId = userId;
+    }
+    
+    public AddressDto(){
+    }
 }

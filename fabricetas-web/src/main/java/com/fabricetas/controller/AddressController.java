@@ -17,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.fabricetas.domain.Address;
 import com.fabricetas.domain.dto.AddressDto;
 import com.fabricetas.service.AddressService;
+import com.fabricetas.service.UserService;
 import com.fabricetas.util.UtilNumber;
 
 /**
@@ -31,6 +32,9 @@ public class AddressController {
 
     @Autowired
     private AddressService addressService;
+    
+    @Autowired
+    private UserService userService;
 
     /**
      * To create a address
@@ -39,9 +43,15 @@ public class AddressController {
      * @return ucBuilder to response htt status
      */
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Address> create(@RequestBody Address address, UriComponentsBuilder ucBuilder) {
-        if (!UtilNumber.isNullOrZero(address.getAddressId()))
+    //public ResponseEntity<Address> create(@RequestBody Address address, UriComponentsBuilder ucBuilder) {
+    public ResponseEntity<Address> create(@RequestBody AddressDto addressDto, UriComponentsBuilder ucBuilder) {
+        if (!UtilNumber.isNullOrZero(addressDto.getAddressId()))
             return new ResponseEntity<>(HttpStatus.CONFLICT);
+        
+        Address address = new Address();
+        address.setName( addressDto.getName() );
+        address.setUser( userService.findOne( addressDto.getUserId() )  );
+        
         return new ResponseEntity<>(addressService.create(address), HttpStatus.CREATED);
     }
 
@@ -78,11 +88,16 @@ public class AddressController {
      * @return edited address
      */
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Address> updateAddress(@RequestBody Address address) {
+    public ResponseEntity<Address> updateAddress(@RequestBody Address address, @RequestParam(value="fetch", required= false) String fetch) {
         if (UtilNumber.isNullOrZero(address.getAddressId()))
             return new ResponseEntity<>(HttpStatus.CONFLICT);
-        else if(!addressService.exist(address.getAddressId()))
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else if(addressService.exist(address.getAddressId())){
+        	AddressDto addressDto = addressService.findOneDto(address.getAddressId(), null);
+        	address.setUser( addressDto.getUser() ); 
+        }else if(!addressService.exist(address.getAddressId())){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        }
+        
         return new ResponseEntity<>(addressService.update(address), HttpStatus.OK);
     }
 
